@@ -1,9 +1,24 @@
+"""
+File: Friday13th.py
+Author: Truman Farr
+tfarr@mail.sfsu.edu
+trumanfarr@gmail.com
+"""
 from collections import deque
+
+days = deque(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
+unordered_days = days.copy()
 
 
 def generateCalendar(starting_day, leap_year=False):
-    days = deque(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
-    unordered_days = days.copy()
+    """
+        Generate Calendar given starting day, and return how many Friday the 13th's appear in that year.
+        Parameters:
+        ---------------
+        starting_day (str)  Which day to start calendar
+        leap_year (bool)    (optional) Whether calendar should include leap year added day or not
+    """
+
     months = {'Jan': 31, 'Feb': 28, 'Mar': 31, 'Apr': 30, 'May': 31,
               'Jun': 30, 'Jul': 31, 'Aug': 31, 'Sep': 30, 'Oct': 31,
               'Nov': 30, 'Dec': 31}
