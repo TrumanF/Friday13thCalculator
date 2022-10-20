@@ -1,17 +1,16 @@
 from collections import deque
 
-days = deque(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
-unordered_days = days.copy()
-
 
 def generateCalendar(starting_day, leap_year=False):
+    days = deque(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
+    unordered_days = days.copy()
     months = {'Jan': 31, 'Feb': 28, 'Mar': 31, 'Apr': 30, 'May': 31,
               'Jun': 30, 'Jul': 31, 'Aug': 31, 'Sep': 30, 'Oct': 31,
               'Nov': 30, 'Dec': 31}
     if leap_year:
         months['Feb'] += 1
     starting_day = unordered_days.index(starting_day)
-    print("Starting day: {0}".format(starting_day))
+    # print("Starting day: {0}".format(starting_day))
     last_day = starting_day - 1 if starting_day != 0 else 6
     print(last_day)
     days.rotate(-starting_day)
@@ -23,9 +22,11 @@ def generateCalendar(starting_day, leap_year=False):
             else:
                 print("%-3s" % month, end=" ")
         print()
+
         for day in unordered_days:
             print("%-3s" % day, end=" ")
         print()
+
         for i in range(months[month]):
             if month != 'Jan' and i == 0:
                 day_index = last_day + 1 if last_day != 6 else 0
@@ -50,14 +51,19 @@ def generateCalendar(starting_day, leap_year=False):
     return friday13Count
 
 
-maxCount = (0, "")
-listCount = []
-for day in unordered_days:
-    print("Starting day: {0}".format(day))
-    currentCount = generateCalendar(day)
-    if currentCount > maxCount[0]:
-        maxCount = (currentCount, day)
-    listCount.append(currentCount)
-    print("Count: {0}".format(currentCount))
-print(maxCount)
-print(listCount)
+def main():
+    maxCount = (0, "")
+    listCount = []
+    for day in unordered_days:
+        print("Starting day: {0}".format(day))
+        currentCount = generateCalendar(day)
+        if currentCount > maxCount[0]:
+            maxCount = (currentCount, day)
+        listCount.append(currentCount)
+        # print("Count: {0}".format(currentCount))
+    print(maxCount)
+    print(listCount)
+
+
+if __name__ == "__main__":
+    main()
